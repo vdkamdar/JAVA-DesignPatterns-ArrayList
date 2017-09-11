@@ -1,0 +1,58 @@
+import java.util.Arrays;
+
+public class MyArrayList{
+    private int[] integer_array = new int[50];
+    private int current_size=50;
+    private int max_size=50;
+
+    //Constructor to initialize private data member
+    MyArrayList(int[] integer_array){
+	    this.integer_array = integer_array;
+    }
+
+    //Method to sort array in ascending order
+    void sort_array(){
+	    Arrays.sort(integer_array);
+    }
+    
+    //Method to insert new value into the array and keep it sorted
+    void insertSorted(int newValue){
+    	if(max_size <= current_size){
+	        max_size = max_size + 25;
+            
+	        integer_array[integer_array.length()-1] = newValue;
+	        sort_array();
+	    }
+    }
+
+    //Method to remove the given value from the array and keep it sorted
+    void removeValue(int value){
+	    int index;
+	    for(int i=0; i<current_size; i++){
+	        if(integer_array[i] == value){
+		        index = i;
+		        current_size--;
+	        }
+	        for(int i=index; i<current_size; i++){
+		        integer_array[i] = integer_array[i+1];
+	        }
+	    }
+    }
+    
+    //Function skeleton for further use
+    int intIndexOf(int value){
+	return -1;
+    }
+
+    int size(){
+	return -1;
+    }
+
+    int sum(){
+	return -1;
+    }
+    
+    public static void main(String[] args){
+	
+    }
+}
