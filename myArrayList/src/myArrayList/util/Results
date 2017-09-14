@@ -1,0 +1,23 @@
+package myArrayList.util;
+
+import java.util.ArrayList;
+import java.io.FileNotFoundException;
+
+public class Results implements FileDisplayInterface, StdoutDisplayInterface{
+
+    private String outputFile;
+
+    public Results(String outputFile){
+	this.outputFile = outputFile;
+    }
+    
+    //Function Skeleton
+    public void writeToFile(String str){	
+    }
+
+    public void writeToStdout(){
+    }
+
+    public void storeNewResult(){
+    }
+}
