@@ -1,0 +1,12 @@
+package myArrayList.test;
+
+import myArrayList.MyArrayList;
+import myArrayList.util.Results;
+
+public class MyArrayListTest{
+    public void testMe(MyArrayList myArrayList, Results results){
+	//Call 10 different methods and test it on boundary cases.
+	//Write to results.storeNewResult() - Name of the test, if it passed
+	//If failed, error message; if passed, test XYZ passed
+    }
+}
