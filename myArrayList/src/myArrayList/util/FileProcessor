@@ -8,31 +8,40 @@ public class FileProcessor{
 
     private Scanner in = null;
 
-    public FileProcessor(String filename){
-	    File f = new File(filename);
-	    in = new Scanner(f);
+    public FileProcessor(String filename) throws Exception{
+	File f = new File(filename);
+	in = new Scanner(f);
     }
     
-    public String readLine(){
-	try{	    
-	    String line="";
-
+    public String readLine()throws FileNotFoundException{
+	String line = "";
+	try{
 	    while(in.hasNext()){
 		line = in.next();
 		return line;
-	    }	    
+	    }
+	    line = null;
+	    if(in != null){
+		in.close();
+		in = null;
+	    }
+	    return line;
 	}
 	catch(Exception e){
-        if(in != null){
-		    in.close();
-		    in = null;
+	    if(in != null){
+		in.close();
+		in = null;
 	    }
 	    throw e;
 	}
+	
 	finally{
+	    line = null;
 	    if(in != null){
-		    in.close();
-		    in = null;
+		in.close();
+		in = null;
 	    }
+	    return line;
+	 }
     }
 }
