@@ -1,7 +1,26 @@
+package myArrayList.driver;
+
+import myArrayList.MyArrayList;
+import myArrayList.test.MyArrayListTest;
+import myArrayList.util.FileProcessor;
+import myArrayList.util.Results;
+
 public class Driver{ 
-    public static void main(){
+    public static void main(String[] args){
+
+	String inputFile = null;
+	String outputFile = null;
+
+	if(args.length == 2){
+	    inputFile = args[0];
+	    outputFile = args[1];
+	}
+
+	FileProcessor fp = new FileProcessor(inputFile);
+	
 	MyArrayList myArrayList = new MyArrayList();
-	Results results = new Results();
-	myArrayList.testMe(myArrayList, results);
+	Results results = new Results(outputFile);
+	MyArrayListTest myTest = new MyArrayListTest();
+	myTest.testMe(myArrayList, results);
     }
 }
