@@ -1,48 +1,136 @@
 package myArrayList.test;
 
+import java.util.Arrays;
 import myArrayList.MyArrayList;
 import myArrayList.util.Results;
 
 public class MyArrayListTest{
     public void testMe(MyArrayList myArrayList, Results results){
-	
 	testArrayResizing(myArrayList, results);
+
 	testRemoveAllValues(myArrayList, results);
+
+	testIndexOfDuplicate(myArrayList, results);
+	
+	testSum(myArrayList, results);
+
+	testIndexInEmptyArray(myArrayList, results);
     }
 
     private void testArrayResizing(MyArrayList myArrayList, Results results){
-		myArrayList.initialize();
+	myArrayList.initialize();
 	
-		for(int i=-1000; i<=-1; i++){
-	    	myArrayList.insertSorted(i);
-		}
-		boolean isSizeCorrect = false;
-		if(myArrayList.size()==1000){
-		    isSizeCorrect = true;
-		}
+	for(int i=-1000; i<=-1; i++){
+	    myArrayList.insertSorted(i);
+	}
+	boolean isSizeCorrect = false;
+	if(myArrayList.size() == 1000){
+	    isSizeCorrect = true;
+	}
 	
-		String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
-		if(isSizeCorrect){
-	    	results.storeNewResult( method_name + " TEST PASSED");
-		}
-		else{
-	    	results.storeNewResult( method_name + " TEST FAILED");
-		}
+	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
+	if(isSizeCorrect){
+	    results.storeNewResult( method_name + "\t\t\t:  PASSED");
+	}
+	else{
+	    results.storeNewResult( method_name + "\t\t\t:  FAILED");
+	}
     }
 
     private void testRemoveAllValues(MyArrayList myArrayList, Results results){
-		myArrayList.initialize();
-		for(int i=0; i<myArray.size(); i++){
-	    	myArrayList.removeValues(-i);
-		}
-		int[] solutionArray = {};
-		boolean isArrayEmpty = assertEquals(solutionArray, myArray.arrayDuplicate());
-		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		if(isArrayEmpty){
-		    results.storeNewResult( method_name + " TEST PASSED");
-		}
-		else{
-		    results.storeNewResult( method_name + " TEST FAILED");
-		}
+	myArrayList.initialize();
+	for(int i=0; i<myArrayList.size(); i++){
+	    //myArrayList.removeValue(-i);
+	}
+	int[] solutionArray = {};
+	boolean isArrayEmpty = Arrays.equals(solutionArray, myArrayList.arrayDuplicate());
+	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
+	if(isArrayEmpty){
+	    results.storeNewResult( method_name + "\t\t\t:  PASSED");
+	}
+	else{
+	    results.storeNewResult( method_name + "\t\t\t:  FAILED");
+	}
+    }
+
+    private void testIndexOfDuplicate(MyArrayList myArrayList, Results results){
+	myArrayList.initialize();
+	for(int i=0; i<5; i++){
+	    myArrayList.insertSorted(70);
+	}
+	boolean isIndexValueCorrect = false;
+	if(0 ==  myArrayList.intIndexOf(70)){
+	    isIndexValueCorrect = true;
+	}
+	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
+	if(isIndexValueCorrect){
+	    results.storeNewResult( method_name + "\t\t:  PASSED");
+	}
+	else{
+	    results.storeNewResult( method_name + "\t\t:  FAILED");
+	}	
+    }
+    
+    private void testSum(MyArrayList myArrayList, Results results){
+	myArrayList.initialize();
+	for(int i=0; i<5; i++){
+	    myArrayList.insertSorted(i);
+	}
+	boolean isSumCorrect = false;
+	if(myArrayList.sum() == 10){
+	    isSumCorrect = true;
+	}
+	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
+	if(isSumCorrect){
+	    results.storeNewResult( method_name + "\t\t\t\t:  PASSED");
+	}
+	else{
+	    results.storeNewResult( method_name + "\t\t\t\t:  FAILED");
+	}   
+    }
+
+    private void testIndexInEmptyArray(MyArrayList myArrayList, Results results){
+	myArrayList.initialize();
+	boolean isIndexCorrect = false;
+	if(myArrayList.intIndexOf(70) == -1){
+	    isIndexCorrect = true;
+	}
+	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
+	if(isIndexCorrect){
+	    results.storeNewResult( method_name + "\t\t:  PASSED");
+	}
+	else{
+	    results.storeNewResult( method_name + "\t\t:  FAILED");
+	}
+    }
+
+    private void testSumInEmptyArray(MyArrayList myArrayList, Rresults results){
+	myArrayList.initialize();
+	boolean isSumCorrect = false;
+	if(myArrayList.sum() == 0){
+	    isSumCorrect = true;
+	}
+	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
+	if(isSumCorrect){
+	    results.storeNewResult( method_name + "\t\t:  PASSED");
+	}
+	else{
+	    results.storeNewResult( method_name + "\t\t:  FAILED");
+	}	
+    }
+
+    private void testSumInEmptyArray(MyArrayList myArrayList, Rresults results){
+	myArrayList.initialize();
+	boolean isSumCorrect = false;
+	if(myArrayList.sum() == 0){
+	    isSumCorrect = true;
+	}
+	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
+	if(isSumCorrect){
+	    results.storeNewResult( method_name + "\t\t:  PASSED");
+	}
+	else{
+	    results.storeNewResult( method_name + "\t\t:  FAILED");
+	}	
     }
 }
