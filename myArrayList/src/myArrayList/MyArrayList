@@ -3,53 +3,77 @@ package myArrayList;
 import java.util.Arrays;
 
 public class MyArrayList{
-    private int[] integer_array = null;
-    int current_size=50;
+    private int[] integerArray = null;
+    int current_size=0;
     int max_size=50;
 
     //Constructor to initialize private data member
     public MyArrayList(){
-	integer_array = new int[max_size];
+	integerArray = new int[max_size];
     }
 
     //Method to sort array in ascending order
    public void sort_array(){
-	    Arrays.sort(integer_array);
+       Arrays.sort(integerArray, 0, current_size);
     }
     
     //Method to insert new value into the array and keep it sorted
     public void insertSorted(int newValue){
-    	if(max_size <= current_size){
-	    max_size = max_size + (Math.ceil(maxsize/2));
-            integer_array[integer_array.length - 1] = newValue;
+    	if(current_size < max_size){
+	    current_size++;
+	    integerArray[current_size-1] = newValue;
+	}
+	else{
+	    //Use Ceil, Round or Floor
+	    max_size = max_size + (Math.round(max_size/2));
+	    int[] newIntegerArray = new int[max_size];
+	    for(int i = 0; i < current_size; i++){
+		newIntegerArray[i] = integerArray[i];
+	    }
+	    integerArray = newIntegerArray;
+	    current_size++;
+            integerArray[current_size - 1] = newValue;
 	    sort_array();
 	}
     }
 
     //Method to remove the given value from the array and keep it sorted
     public void removeValue(int value){
-	int index=0;
 	for(int i=0; i<current_size; i++){
-	    if(integer_array[i] == value){
-		index = i;
+	    if(integerArray[i] == value){
+		for(int j=index; j<current_size-1; j++){
+		    integerArray[j] = integer_array[j+1];
+		}
+		integerArray[current_size-1] = 0;
 		current_size--;
-	    }
-	    for(int j=index; j<current_size; j++){
-		integer_array[j] = integer_array[j+1];
-	    }
+	    }	
 	}
     }
     
-    //Function skeleton for further use
     public int intIndexOf(int value){
+	for(int i=0; i<current_size; i++){
+	    if(integerArray[i] == value){
+		return i;
+	    }
+	}
 	return -1;
     }
 
     public int size(){
-	return -1;
+	return current_size;
     }
 
     public int sum(){
-	return -1;
+	int sum = 0;
+	for(int i=0; i<current_size; i++){
+	    sum = sum + integerArray[i];
+	}
+	return sum;
+    }
+
+    public void initialize(){
+	this.current_size = 0;
+	this.max_size = 50;
+	this.integerArray = new int[max_size];
     }
 }
