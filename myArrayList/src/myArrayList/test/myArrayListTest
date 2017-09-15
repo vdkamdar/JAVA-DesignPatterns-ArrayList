@@ -5,8 +5,44 @@ import myArrayList.util.Results;
 
 public class MyArrayListTest{
     public void testMe(MyArrayList myArrayList, Results results){
-	//Call 10 different methods and test it on boundary cases.
-	//Write to results.storeNewResult() - Name of the test, if it passed
-	//If failed, error message; if passed, test XYZ passed
+	
+	testArrayResizing(myArrayList, results);
+	testRemoveAllValues(myArrayList, results);
+    }
+
+    private void testArrayResizing(MyArrayList myArrayList, Results results){
+		myArrayList.initialize();
+	
+		for(int i=-1000; i<=-1; i++){
+	    	myArrayList.insertSorted(i);
+		}
+		boolean isSizeCorrect = false;
+		if(myArrayList.size()==1000){
+		    isSizeCorrect = true;
+		}
+	
+		String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
+		if(isSizeCorrect){
+	    	results.storeNewResult( method_name + " TEST PASSED");
+		}
+		else{
+	    	results.storeNewResult( method_name + " TEST FAILED");
+		}
+    }
+
+    private void testRemoveAllValues(MyArrayList myArrayList, Results results){
+		myArrayList.initialize();
+		for(int i=0; i<myArray.size(); i++){
+	    	myArrayList.removeValues(-i);
+		}
+		int[] solutionArray = {};
+		boolean isArrayEmpty = assertEquals(solutionArray, myArray.arrayDuplicate());
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		if(isArrayEmpty){
+		    results.storeNewResult( method_name + " TEST PASSED");
+		}
+		else{
+		    results.storeNewResult( method_name + " TEST FAILED");
+		}
     }
 }
