@@ -4,52 +4,47 @@ import java.util.Arrays;
 
 public class MyArrayList{
     private int[] integerArray = null;
-    int current_size=0;
-    int max_size=50;
+    private int current_size=0;
+    private int max_size=50;
 
-    //Constructor to initialize private data member
     public MyArrayList(){
 	integerArray = new int[max_size];
     }
 
-    //Method to sort array in ascending order
-   public void sort_array(){
+    private void sort_array(){
        Arrays.sort(integerArray, 0, current_size);
     }
     
-    //Method to insert new value into the array and keep it sorted
     public void insertSorted(int newValue){
-    	if(current_size < max_size){
-	    current_size++;
-	    integerArray[current_size-1] = newValue;
-	}
-	else{
-	    //Use Ceil, Round or Floor
+    	if(current_size >= max_size){
 	    max_size = max_size + (Math.round(max_size/2));
 	    int[] newIntegerArray = new int[max_size];
 	    for(int i = 0; i < current_size; i++){
 		newIntegerArray[i] = integerArray[i];
 	    }
 	    integerArray = newIntegerArray;
-	    current_size++;
-            integerArray[current_size - 1] = newValue;
-	    sort_array();
 	}
+        integerArray[current_size] = newValue;
+	current_size++;
+	sort_array();
     }
 
-    //Method to remove the given value from the array and keep it sorted
     public void removeValue(int value){
 	for(int i=0; i<current_size; i++){
 	    if(integerArray[i] == value){
-		for(int j=index; j<current_size-1; j++){
-		    integerArray[j] = integer_array[j+1];
+		for(int j=i; j<current_size-1; j++){
+		    integerArray[j] = integerArray[j+1];
 		}
 		integerArray[current_size-1] = 0;
+		i--;
 		current_size--;
 	    }	
 	}
     }
-    
+
+    /**
+    *@return index of the element in the arrayList
+    */
     public int intIndexOf(int value){
 	for(int i=0; i<current_size; i++){
 	    if(integerArray[i] == value){
@@ -59,10 +54,16 @@ public class MyArrayList{
 	return -1;
     }
 
+    /**
+    *@return current size of the arrayList
+    */
     public int size(){
 	return current_size;
     }
 
+    /**
+    *@return sum of all the elements in the arrayList
+    */
     public int sum(){
 	int sum = 0;
 	for(int i=0; i<current_size; i++){
@@ -75,5 +76,28 @@ public class MyArrayList{
 	this.current_size = 0;
 	this.max_size = 50;
 	this.integerArray = new int[max_size];
+    }
+
+    /**
+    *@return copy of the integer array upto its current size
+    */
+    public int[] arrayDuplicate(){
+	int[] arrayDup = new int[current_size];
+	for(int i=0; i<current_size; i++){
+	    arrayDup[i] = integerArray[i];
+	}
+	return arrayDup;
+    }
+
+    /**
+    *@return array elements as a formatted string
+    */
+    public String toString(){
+	StringBuffer str_buffer = new StringBuffer();
+	str_buffer.append(integerArray[0]);
+	for(int i=1; i<current_size; i++){
+	    str_buffer.append("\t" + integerArray[i]);
+	}
+	return str_buffer.toString();
     }
 }
