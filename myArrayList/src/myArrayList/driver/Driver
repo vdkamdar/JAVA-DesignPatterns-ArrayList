@@ -4,23 +4,49 @@ import myArrayList.MyArrayList;
 import myArrayList.test.MyArrayListTest;
 import myArrayList.util.FileProcessor;
 import myArrayList.util.Results;
+import java.util.InputMismatchException;
+import java.lang.NumberFormatException;
 
 public class Driver{ 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
 
 	String inputFile = null;
 	String outputFile = null;
-
 	if(args.length == 2){
 	    inputFile = args[0];
 	    outputFile = args[1];
 	}
-
-	FileProcessor fp = new FileProcessor(inputFile);
+	else{
+	    throw new RuntimeException("Two arguments expected!");
+	}
 	
+	FileProcessor fp = new FileProcessor(inputFile);	
 	MyArrayList myArrayList = new MyArrayList();
 	Results results = new Results(outputFile);
 	MyArrayListTest myTest = new MyArrayListTest();
+
+	String num = null;
+	while((num = fp.readLine()) != null){
+	    int num_int = 0;
+	    try{
+		num_int = Integer.parseInt(num);
+	    }
+	    catch(NumberFormatException e){
+		throw new RuntimeException("Only integer values accepted");
+	    }
+	    if(num_int > 10000 || num_int < 0){
+		fp.closeInScanner();
+		throw new InputMismatchException("Number should be in the range 0 to 10000");
+	    }
+	    myArrayList.insertSorted(num_int);
+	}
+	
+	int integerSum = 0;
+	integerSum = myArrayList.sum();
+	String s_sum = String.valueOf(integerSum);
+	
 	myTest.testMe(myArrayList, results);
+	results.writeToFile(s_sum);
+	results.writeToStdout(s_sum);
     }
 }
