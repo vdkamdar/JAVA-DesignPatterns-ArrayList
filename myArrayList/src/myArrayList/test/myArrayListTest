@@ -8,13 +8,25 @@ public class MyArrayListTest{
     public void testMe(MyArrayList myArrayList, Results results){
 	testArrayResizing(myArrayList, results);
 
-	testRemoveAllValues(myArrayList, results);
-
 	testIndexOfDuplicate(myArrayList, results);
+	
+	testIndexInEmptyArray(myArrayList, results);
 	
 	testSum(myArrayList, results);
 
-	testIndexInEmptyArray(myArrayList, results);
+	testSumInEmptyArray(myArrayList, results);
+
+	testRemoveAllValues(myArrayList, results);
+
+	testRemoveAllDuplicateValues(myArrayList, results);
+
+	testRemoveValueInEmptyArray(myArrayList, results);
+
+	testIfArraySortedAfterInsert(myArrayList, results);
+
+	testIfArraySortedAfterRemove(myArrayList, results);
+
+	testIfArraySortedAfterRemoveDuplicates(myArrayList, results);
     }
 
     private void testArrayResizing(MyArrayList myArrayList, Results results){
@@ -27,32 +39,13 @@ public class MyArrayListTest{
 	if(myArrayList.size() == 1000){
 	    isSizeCorrect = true;
 	}
-	
-	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
 	if(isSizeCorrect){
-	    results.storeNewResult( method_name + "\t\t\t:  PASSED");
+	    results.storeNewResult( "test 'testArrayResizing' passed");
 	}
 	else{
-	    results.storeNewResult( method_name + "\t\t\t:  FAILED");
+	    results.storeNewResult( "Error(testArrayResizing): Array could not be resized");
 	}
     }
-
-    private void testRemoveAllValues(MyArrayList myArrayList, Results results){
-	myArrayList.initialize();
-	for(int i=0; i<myArrayList.size(); i++){
-	    //myArrayList.removeValue(-i);
-	}
-	int[] solutionArray = {};
-	boolean isArrayEmpty = Arrays.equals(solutionArray, myArrayList.arrayDuplicate());
-	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
-	if(isArrayEmpty){
-	    results.storeNewResult( method_name + "\t\t\t:  PASSED");
-	}
-	else{
-	    results.storeNewResult( method_name + "\t\t\t:  FAILED");
-	}
-    }
-
     private void testIndexOfDuplicate(MyArrayList myArrayList, Results results){
 	myArrayList.initialize();
 	for(int i=0; i<5; i++){
@@ -62,13 +55,26 @@ public class MyArrayListTest{
 	if(0 ==  myArrayList.intIndexOf(70)){
 	    isIndexValueCorrect = true;
 	}
-	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
 	if(isIndexValueCorrect){
-	    results.storeNewResult( method_name + "\t\t:  PASSED");
+	    results.storeNewResult( "test 'testIndexOfDuplicate' passed");
 	}
 	else{
-	    results.storeNewResult( method_name + "\t\t:  FAILED");
+	    results.storeNewResult("Error(testIndexOfDuplicate): Could not find first occurence of duplicate value");
 	}	
+    }
+
+    private void testIndexInEmptyArray(MyArrayList myArrayList, Results results){
+	myArrayList.initialize();
+	boolean isIndexCorrect = false;
+	if(myArrayList.intIndexOf(70) == -1){
+	    isIndexCorrect = true;
+	}
+	if(isIndexCorrect){
+	    results.storeNewResult( "test 'testIndexInEmptyArray' passed");
+	}
+	else{
+	    results.storeNewResult( "Error(testIndexInEmptyArray): Could not return error code -1 on empty array");
+	}
     }
     
     private void testSum(MyArrayList myArrayList, Results results){
@@ -80,57 +86,127 @@ public class MyArrayListTest{
 	if(myArrayList.sum() == 10){
 	    isSumCorrect = true;
 	}
-	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
 	if(isSumCorrect){
-	    results.storeNewResult( method_name + "\t\t\t\t:  PASSED");
+	    results.storeNewResult( "test 'testSum' passed");
 	}
 	else{
-	    results.storeNewResult( method_name + "\t\t\t\t:  FAILED");
+	    results.storeNewResult( "Error(testSum): Could not find sum of array elements");
 	}   
     }
 
-    private void testIndexInEmptyArray(MyArrayList myArrayList, Results results){
-	myArrayList.initialize();
-	boolean isIndexCorrect = false;
-	if(myArrayList.intIndexOf(70) == -1){
-	    isIndexCorrect = true;
-	}
-	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
-	if(isIndexCorrect){
-	    results.storeNewResult( method_name + "\t\t:  PASSED");
-	}
-	else{
-	    results.storeNewResult( method_name + "\t\t:  FAILED");
-	}
-    }
-
-    private void testSumInEmptyArray(MyArrayList myArrayList, Rresults results){
+    private void testSumInEmptyArray(MyArrayList myArrayList, Results results){
 	myArrayList.initialize();
 	boolean isSumCorrect = false;
 	if(myArrayList.sum() == 0){
 	    isSumCorrect = true;
 	}
-	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
 	if(isSumCorrect){
-	    results.storeNewResult( method_name + "\t\t:  PASSED");
+	    results.storeNewResult( "test 'testSumInEmptyArray' passed");
 	}
 	else{
-	    results.storeNewResult( method_name + "\t\t:  FAILED");
+	    results.storeNewResult( "Error(testSumInEmptyArray): Could not find sum on empty array");
 	}	
     }
 
-    private void testSumInEmptyArray(MyArrayList myArrayList, Rresults results){
-	myArrayList.initialize();
-	boolean isSumCorrect = false;
-	if(myArrayList.sum() == 0){
-	    isSumCorrect = true;
+    private void testRemoveAllValues(MyArrayList myArrayList, Results results){
+	myArrayList.initialize();	
+	for(int i=0; i<20; i++){
+	    myArrayList.insertSorted(i);
 	}
-	String method_name = Thread.currentThread().getStackTrace()[1].getMethodName();
-	if(isSumCorrect){
-	    results.storeNewResult( method_name + "\t\t:  PASSED");
+	for(int i=0; i<20; i++){
+	    myArrayList.removeValue(i);
+	}
+	int[] solutionArray = {};
+	boolean isArrayEmpty = Arrays.equals(solutionArray, myArrayList.arrayDuplicate());
+	if(isArrayEmpty){
+	    results.storeNewResult( "test 'testRemoveAllValues' passed");
 	}
 	else{
-	    results.storeNewResult( method_name + "\t\t:  FAILED");
+	    results.storeNewResult( "Error(testRemoveAllValues): Could not remove all values from the array");
+	}
+    }
+
+    private void testRemoveAllDuplicateValues(MyArrayList myArrayList, Results results){
+	myArrayList.initialize();	
+	myArrayList.insertSorted(1);
+	myArrayList.insertSorted(2);
+	myArrayList.insertSorted(2);
+	myArrayList.insertSorted(3);
+	myArrayList.insertSorted(4);
+	myArrayList.insertSorted(5);
+	myArrayList.insertSorted(2);
+	
+	myArrayList.removeValue(2);
+	
+	int[] solutionArray = {1,3,4,5};
+	boolean isArrayEmpty = Arrays.equals(solutionArray, myArrayList.arrayDuplicate());
+	if(isArrayEmpty){
+	    results.storeNewResult( "test 'testRemoveAllDuplicateValues' passed");
+	}
+	else{
+	    results.storeNewResult( "Error(testRemoveAllDuplicateValues): Could not remove all duplicate values of an element from the array");
+	}	
+    }
+    
+    private void testRemoveValueInEmptyArray(MyArrayList myArrayList, Results results){
+	myArrayList.initialize();
+	int[] solution = new int[myArrayList.size()];
+	myArrayList.removeValue(7);
+	boolean isComputationSuccessful = Arrays.equals(solution, myArrayList.arrayDuplicate());
+	if(isComputationSuccessful){
+	    results.storeNewResult( "test 'testRemoveValueInEmptyArray' passed");
+	}
+	else{
+	    results.storeNewResult("Error(testRemoveValueInEmptyArray): Could not remove value from empty array");
+	}	
+    }
+
+    private void testIfArraySortedAfterInsert(MyArrayList myArrayList, Results results){
+	myArrayList.initialize();
+	for(int i=5; i>0; i--){
+	    myArrayList.insertSorted(i);
+	}
+	int[] solution = {1,2,3,4,5};
+	boolean areArraysSame = Arrays.equals(solution, myArrayList.arrayDuplicate());
+	if(areArraysSame){
+	    results.storeNewResult("test 'testIfArraySortedAfterInsert' passed");
+	}
+	else{
+	    results.storeNewResult("Error(testIfArraySortedAfterInsert): Could not sort the array after inserting an element");
+	}
+    }
+
+    private void testIfArraySortedAfterRemove(MyArrayList myArrayList, Results results){
+	myArrayList.initialize();
+	for(int i=5; i>0; i--){
+	    myArrayList.insertSorted(i);
+	}
+	myArrayList.removeValue(3);
+		
+	int[] solution = {1,2,4,5};
+	boolean areArraysSame = Arrays.equals(solution, myArrayList.arrayDuplicate());
+	if(areArraysSame){
+	    results.storeNewResult("test 'testIfArraySortedAfterRemove' passed");
+	}
+	else{
+	    results.storeNewResult("Error(testIfArraySortedAfterRemove): Could not sort the array after removing an element");
+	}
+    }
+
+    private void testIfArraySortedAfterRemoveDuplicates(MyArrayList myArrayList, Results results){
+	myArrayList.initialize();
+	for(int i=0; i<5; i++){
+	    myArrayList.insertSorted(7);
+	}
+	myArrayList.removeValue(7);
+		
+	int[] solution = {};
+	boolean areArraysSame = Arrays.equals(solution, myArrayList.arrayDuplicate());
+	if(areArraysSame){
+	    results.storeNewResult("test 'testIfArraySortedAfterRemoveDuplicates' passed");
+	}
+	else{
+	    results.storeNewResult("Error(testIfArraySortedAfterRemoveDuplicates): Could not sort after removing duplicate values of an element");
 	}	
     }
 }
