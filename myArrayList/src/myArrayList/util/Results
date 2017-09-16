@@ -2,22 +2,42 @@ package myArrayList.util;
 
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class Results implements FileDisplayInterface, StdoutDisplayInterface{
 
     private String outputFile;
+    private ArrayList<String> testResults = new ArrayList<String>();
 
     public Results(String outputFile){
 	this.outputFile = outputFile;
     }
     
-    //Function Skeleton
-    public void writeToFile(String str){	
+    public void writeToFile(String s){
+	PrintWriter pw = null;
+	try{
+	    pw = new PrintWriter(this.outputFile);
+	}
+	catch(FileNotFoundException e){
+	    throw new RuntimeException(e);
+	}
+	pw.print("The sum of all values is: "+s+"\n");
+	
+	for(int i=0; i<testResults.size(); i++){
+	    pw.println(testResults.get(i));
+	}
+	pw.close();
     }
 
-    public void writeToStdout(){
+    public void writeToStdout(String s){
+	System.out.print("The sum of all values is: " + s + "\n");
+	
+	for(int i=0; i<testResults.size(); i++){
+	    System.out.println(testResults.get(i));
+	}
     }
 
-    public void storeNewResult(){
+    public void storeNewResult(String result){
+	this.testResults.add(result);
     }
 }
