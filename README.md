@@ -1,3 +1,5 @@
+# JAVA-DesignPatterns-ArrayList #
+
 # This repositiry is protected by Apache License 2.0
 
 Assuming you are in the directory containing this README:
@@ -28,25 +30,3 @@ Big O Time complexity:O(n) under normal circumstances
 
 -----------------------------------------------------------------------
 
-List of citations
-
-1. Format String output using toString
-Referred to: https://stackoverflow.com/questions/26576909/how-to-format-string-output-so-that-columns-are-evenly-centered
-
-2. Read file line by line
-Referred to: https://rosettacode.org/wiki/Read_a_file_line_by_line#Java
-
-3. Deciding data structures Array v/s ArrayList
-Referred to: http://www.geeksforgeeks.org/array-vs-arraylist-in-java/
-
-4. Analysed different methods to write to file
-Referred to: http://www.baeldung.com/java-write-to-file
-
-5. Solving nullPointerException
-Referred to: https://stackoverflow.com/questions/26334397/nullpointerexception-during-file-io
-
-6. Print arrayList elements
-Referred to: https://stackoverflow.com/questions/9265719/print-arraylist
-
-7. Compare two results during testCases
-Referred to: https://stackoverflow.com/questions/20631621/cannot-find-symbol-assertequals
