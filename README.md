@@ -1,3 +1,4 @@
+#This repositiry is protected by Apache License 2.0
 
 Assuming you are in the directory containing this README:
 
@@ -10,31 +11,11 @@ ant -buildfile src/build.xml all
 
 -----------------------------------------------------------------------
 ## To run by specifying arguments from command line 
-## We will use this to run your code
 ant -buildfile src/build.xml run -Darg0=FIRST -Darg1=SECOND -Darg2=THIRD
 
 -----------------------------------------------------------------------
 
-## To create tarball for submission
-ant -buildfile src/build.xml tarzip or tar -zcvf firstName_secondName_assign_number.tar.gz firstName_secondName_assign_number
-
------------------------------------------------------------------------
-
-"I have done this assignment completely on my own. I have not copied
-it, nor have I given my solution to anyone else. I understand that if
-I am involved in plagiarism or cheating I will have to sign an
-official form that I have cheated and that this form will be stored in
-my official university record. I also understand that I will receive a
-grade of 0 for the involved assignment for my first offense and that I
-will receive a grade of F for the course for any additional
-offense.”
-
-[Date: 15/09/2017]
-
------------------------------------------------------------------------
-
-Provide justification for Data Structures used in this assignment in
-term of Big O complexity (time and/or space)
+Data Structures used in terms of Big O complexity (time and/or space)
 
 int[] array for storing input from file:
 Array is fized size data structure. We do not need to constantly modify our integer array since we increase it half more each time. But if we need to, then we need to make a new one and copy all the elements from previous array. This operation is costly.
@@ -47,8 +28,7 @@ Big O Time complexity:O(n) under normal circumstances
 
 -----------------------------------------------------------------------
 
-Provide list of citations (urls, etc.) from where you have taken code
-(if any).
+List of citations
 
 1. Format String output using toString
 Referred to: https://stackoverflow.com/questions/26576909/how-to-format-string-output-so-that-columns-are-evenly-centered
@@ -65,7 +45,7 @@ Referred to: http://www.baeldung.com/java-write-to-file
 5. Solving nullPointerException
 Referred to: https://stackoverflow.com/questions/26334397/nullpointerexception-during-file-io
 
-6. How to print arrayList elements
+6. Print arrayList elements
 Referred to: https://stackoverflow.com/questions/9265719/print-arraylist
 
 7. Compare two results during testCases
