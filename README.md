@@ -1,4 +1,4 @@
-#This repositiry is protected by Apache License 2.0
+# This repositiry is protected by Apache License 2.0
 
 Assuming you are in the directory containing this README:
 
